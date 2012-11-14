@@ -1,0 +1,26 @@
+{
+	"success":true,
+	"total":5,
+	"images":[
+		{
+			"url":"/img/01.jpg",
+			"name":"01"
+		},
+		{
+			"url":"/img/02.jpg",
+			"name":"02"
+		},
+		{
+			"url":"/img/03.jpg",
+			"name":"03"
+		},
+		{
+			"url":"/img/04.jpg",
+			"name":"04"
+		},
+		{
+			"url":"/img/05.jpg",
+			"name":"05"
+		}
+	]
+}
