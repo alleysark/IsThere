@@ -26,15 +26,15 @@ Ext.define('IsThere.view.ResultList', {
 				return '<img src="' + value + '" width="100" height="100">';
 			},
 			dataIndex:'url',
-			width:128,
-			text:'Image'
+			width:100,
+			text:'견본 이미지'
 		},
 		{
 			xtype:'gridcolumn',
-			dataIndex:'name',
+			dataIndex:'appNo',
 			flex:1,
 			align:'center',
-			text:'Name'
+			text:'출원번호'
 		}
 	],
 

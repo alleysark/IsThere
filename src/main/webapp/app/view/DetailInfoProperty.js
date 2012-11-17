@@ -7,7 +7,8 @@ Ext.define('IsThere.view.DetailInfoProperty', {
 	fieldDefaults:{
 		//msgTarget:'right',
 		labelAlign:'left',
-		labelWidth:125
+		labelWidth:125,
+        width:400
 	},
 
 	items:[
@@ -61,12 +62,6 @@ Ext.define('IsThere.view.DetailInfoProperty', {
 		},
 		{
 			xtype:'textfield',
-			id:'registrationNoTextfield',
-			fieldLabel:'분류',
-			readOnly:true
-		},
-		{
-			xtype:'textfield',
 			id:'priorityAssertionNoTextfield',
 			fieldLabel:'우선권주장번호(일자)',
 			readOnly:true
@@ -79,7 +74,7 @@ Ext.define('IsThere.view.DetailInfoProperty', {
 		},
 		{
 			xtype:'textfield',
-			id:'diposalTextfield',
+			id:'disposalTextfield',
 			fieldLabel:'최종처분(일자)',
 			readOnly:true
 		},

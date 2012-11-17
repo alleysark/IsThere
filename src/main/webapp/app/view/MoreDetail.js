@@ -7,6 +7,12 @@ Ext.define('IsThere.view.MoreDetail', {
 
 	initComponent:function () {
 		var me = this;
+        /*
+        Ext.applyIf(me, {
+            items:[
+            ]
+        });
+        */
 
 		me.callParent(arguments);
 	}

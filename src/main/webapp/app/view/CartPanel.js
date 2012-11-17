@@ -7,7 +7,7 @@ Ext.define('IsThere.view.CartPanel', {
 	],
 
 	layout:'fit',
-	width:150,
+	width:220,
 	collapsed:false,
 	collapsible:true,
 	title:'Cart',

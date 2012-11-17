@@ -1,11 +1,7 @@
 <%@ page import="java.io.*, java.net.*" %>
+<%@ page import="net.sf.json.JSONObject" %>
 <jsp:useBean id="infoGetter" class="sock.InfoGetter" scope="session" />
-<html>
-<head></head>
-<body>
-	<%
-		infoGetter.RequestDetailInfo("4120120008827");
-		out.print( infoGetter.getInfoString() );
-	%>
-</body>
-</html>
+<%
+	infoGetter.RequestDetailInfo("4120120008827");
+	JSONObject obj = infoGetter.parseDataFromHtmlString();
+%>
