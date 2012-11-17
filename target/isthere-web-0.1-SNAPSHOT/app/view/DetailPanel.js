@@ -24,15 +24,13 @@ Ext.define('IsThere.view.DetailPanel', {
 			{
 				xtype:'detailInfoProperty',
 				region:'center',
-				flax:1,
+				height:256,
 				margin:'5 5 5 5'
 			},
 			{
 				xtype:'moreDetail',
 				region:'south',
-				height:100,
-				split:true,
-				collapsible:true
+				flax:1
 			}
 		];
 		me.callParent(arguments);

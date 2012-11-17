@@ -4,9 +4,9 @@ Ext.Loader.setConfig({
 
 Ext.application({
 
-	models:[ 'Results', 'SearchOption', 'DetailInfomation' ],
+	models:[ 'Result', 'SearchOption', 'DetailInfo' ],
 
-	stores:[ 'ResultStore', 'SearchOptStore', 'DetailInfoStore', 'CartStore' ],
+	stores:[ 'ResultStore', 'SearchOptStore', 'DetailInfos', 'CartStore' ],
 
 	views:[ 'AppPanel', 'mainPanel', 'CartPanel', 'SearchPane', 'DetailPanel', 'ResultList', 'MyViewport', 'MyPanel5', 'LargeImgPanel', 'DetailInfoProperty', 'CartList' ],
 
