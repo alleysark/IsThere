@@ -6,7 +6,7 @@ Ext.define('IsThere.controller.MainController', {
 
     stores:[ 'ResultStore', 'CartStore', 'DetailInfos' ],
 
-    views:[ 'SearchPanel', 'CartPanel'],
+    views:[ 'SearchPanel', 'CartPanel', 'DetailInfoProperty'],
 
     refs:[
         //searchPanel Toolbar items
@@ -100,7 +100,7 @@ Ext.define('IsThere.controller.MainController', {
                 itemdblclick:this.onShowDetailInfo
             },
             'searchPanel #uploadButton':{
-                click:this.onUploadClick
+                change:this.onUpload
             },
             'searchPanel #searchButton':{
                 click:this.onSearchClick
@@ -112,8 +112,6 @@ Ext.define('IsThere.controller.MainController', {
         var detailAppNo = record.get('appNo');
 
         var detInfoStore = this.getDetailInfosStore();
-        //var idx = detInfoStore.find('appNo', detailAppNo);
-        //if( -1 != idx )...
         Ext.Ajax.timeout = 10000;   //10 sec
         detInfoStore.load({
             params:{
@@ -154,19 +152,43 @@ Ext.define('IsThere.controller.MainController', {
         });
     },
 
-    onSearchClick:function () {
+    onSearchClick:function (bt, e, eOpts) {
         var keywordText = this.getKeywordTextfield().getValue();
         var condition = this.getConditionCombo().getValue();
 
-        this.getResultGrid().getStore().load({
-            params:{
-                keyword:keywordText,
-                condition:condition
-            }
-        });
+
+         this.getResultGrid().getStore().load({
+         params:{
+         keyword:keywordText,
+         condition:condition
+         }
+         });
+
     },
 
-    onUploadClick:function () {
-        console.log('onUploadClick');
+    onUpload:function (fb, path) {
+        path = path.replace("C:\\fakepath\\", "");
+        this.getKeywordTextfield().setValue("File:" + path);
+
+        var form = fb.up('form').getForm();
+
+        if (form.isValid()) {
+            form.submit({
+                url     : '/rest/upload.do',
+                waitMsg : '파일 업로드중입니다...',
+                headers :{'Accept':'application/json'},
+                isUpload: true,
+                params  : {
+                    file : path
+                },
+                timeout : 100000,
+                success : function (form, action) {
+                    Ext.MessageBox.alert('성공', '업로드를 완료했습니다.');
+                },
+                failure : function (form, action) {
+                    Ext.MessageBox.alert('실패', '파일을 업로드할 수 없습니다.');
+                }
+            });
+        }
     }
 });

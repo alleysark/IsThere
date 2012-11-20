@@ -3,7 +3,7 @@ Ext.define('IsThere.view.LargeImgPanel', {
 	alias:'widget.largeImgPanel',
 
 	layout:'anchor',
-	border:false,
+	border:true,
 
 	initComponent:function () {
 		var me = this;
