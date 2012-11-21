@@ -4,9 +4,13 @@ Ext.define('IsThere.view.ResultView', {
 
     requires:[
         'IsThere.view.CartList',
-        'Ext.grid.plugin.DragDrop'
+        /*'Ext.grid.plugin.DragDrop'*/
+        'Ext.ux.DataView.Draggable'
     ],
 
+    mixins:{
+        draggable:'Ext.ux.DataView.Draggable'
+    },
     store:'ResultStore',
 
     tpl:[
@@ -24,9 +28,6 @@ Ext.define('IsThere.view.ResultView', {
     //overItemCls:'x-item-over',
     itemSelector:'div.thumb-wrap',
     emptyText:'No images to display',
-    plugins:[
-        Ext.create('Ext.ux.DataView.DragSelector', {})
-    ],
     listeners:{
         selectionchange:function (dv, nodes) {
             console.log('sel changed');
@@ -48,6 +49,13 @@ Ext.define('IsThere.view.ResultView', {
     initComponent:function () {
         var me = this;
 
+        me.mixins.draggable.init(me, {
+            ddConfig:{
+                ddGroup:'result-ddgroup',
+                enableDrag:true,
+                enableDrop:false
+            }
+        });
         me.callParent(arguments);
     }
 

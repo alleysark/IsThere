@@ -2,7 +2,10 @@ Ext.define('IsThere.view.SearchPanel', {
     extend:'Ext.panel.Panel',
     alias:'widget.searchPanel',
 
-    requires:[ 'IsThere.view.ResultList' ],
+    requires:[
+        /*'IsThere.view.ResultList'*/   //grid to view
+        'IsThere.view.ResultView'
+    ],
 
     layout:'fit',
     border:false,
@@ -74,7 +77,8 @@ Ext.define('IsThere.view.SearchPanel', {
             ],
             items:[
                 {
-                    xtype:'resultList'
+                    //xtype:'resultList'
+                    xtype:'resultView'
                 }
             ]
         });

@@ -19,10 +19,14 @@ Ext.define('IsThere.controller.MainController', {
             selector:'searchPanel #keywordTextfield'
         },
 
-        //resultGrid
+        /*        //resultGrid
+         {
+         ref:'resultGrid',
+         selector:'resultList'
+         },*/    //grid to view
         {
-            ref:'resultGrid',
-            selector:'resultList'
+            ref:'resultView',
+            selector:'resultView'
         },
 
         //cartGrid
@@ -30,6 +34,7 @@ Ext.define('IsThere.controller.MainController', {
             ref:'cartList',
             selector:'cartList'
         },
+
 
         //detail info large image
         {
@@ -165,12 +170,13 @@ Ext.define('IsThere.controller.MainController', {
         var condition = this.getConditionCombo().getValue();
 
 
-         this.getResultGrid().getStore().load({
-         params:{
-         keyword:keywordText,
-         condition:condition
-         }
-         });
+        /*this.getResultGrid().getStore().load({*/ //grid to view
+        this.getResultView().getStore().load({
+            params:{
+                keyword:keywordText,
+                condition:condition
+            }
+        });
 
     },
 
@@ -182,18 +188,18 @@ Ext.define('IsThere.controller.MainController', {
 
         if (form.isValid()) {
             form.submit({
-                url     : '/rest/upload.do',
-                waitMsg : '파일 업로드중입니다...',
-                headers :{'Accept':'application/json'},
-                isUpload: true,
-                params  : {
-                    file : path
+                url:'/rest/upload.do',
+                waitMsg:'파일 업로드중입니다...',
+                headers:{'Accept':'application/json'},
+                isUpload:true,
+                params:{
+                    file:path
                 },
-                timeout : 100000,
-                success : function (form, action) {
+                timeout:100000,
+                success:function (form, action) {
                     Ext.MessageBox.alert('성공', '업로드를 완료했습니다.');
                 },
-                failure : function (form, action) {
+                failure:function (form, action) {
                     Ext.MessageBox.alert('실패', '파일을 업로드할 수 없습니다.');
                 }
             });
