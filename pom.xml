@@ -10,6 +10,12 @@
     <name>IsThere Web Application</name>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <commons.lang.version>2.5</commons.lang.version>
+        <commons.io.version>2.0.1</commons.io.version>
+        <commons.cli.version>1.2</commons.cli.version>
+        <commons.exec.version>1.1</commons.exec.version>
+        <hadoop.version>1.0.3</hadoop.version>
 
         <!-- Project -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -92,6 +98,76 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+
+                <configuration>
+                    <finalName>${project.artifactId}</finalName>
+                    <!-- jar 파일이 생성될 폴더 -->
+                    <outputDirectory>${deploy.target.dir}</outputDirectory>
+                    <archive>
+                        <manifest>
+                            <!-- jar 파일 META-INF/MANIFEST.MF 에 클래스패스 정보 추가 -->
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>ftp</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <ftp server=""
+                                     remotedir="/root/youngdeok"
+                                     userid=""
+                                     password="">
+                                    <fileset dir="${basedir}/target">
+                                        <include name="${project.build.finalName}.${packaging}"/>
+                                    </fileset>
+                                </ftp>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeArtifactIds></includeArtifactIds>
+                            <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -256,6 +332,26 @@
             <version>${hibernate.version}</version>
         </dependency>
 
+        <!-- Lucene core 3.3.0 -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <!-- Commons Math 2.2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <!-- Metadata-extractor -->
+        <dependency>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>2.6.2</version>
+        </dependency>
         <!-- ===================== -->
         <!--  Spring Dependencies  -->
         <!-- ===================== -->
@@ -512,6 +608,36 @@
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.7.1</version>
+        </dependency>
+
+        <!-- ======== -->
+        <!--  Hadoop  -->
+        <!-- ======== -->
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-core</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+
+        <!-- ========== -->
+        <!--  Parallel  -->
+        <!-- ========== -->
+
+        <dependency>
+            <groupId>parallel</groupId>
+            <artifactId>jsr166y</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/jsr166y.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>parallel</groupId>
+            <artifactId>jsr166y-extra</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/extra166y.jar</systemPath>
         </dependency>
     </dependencies>
 

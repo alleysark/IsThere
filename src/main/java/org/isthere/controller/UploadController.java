@@ -12,9 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +44,7 @@ public class UploadController {
             String originalFilename = uploadedFile.getOriginalFilename();
 
             // TODO pass bytes array to image handler
+
 
             System.out.println(originalFilename);
             params.put("success", Boolean.TRUE);
