@@ -35,18 +35,13 @@ Ext.define('IsThere.view.CartList',{
 		{
 			xtype:'gridcolumn',
 			renderer:function (value, metaData, record, rowIndex, colIndex, store, view) {
-				return '<img src="' + value + '" width="64" height="64">';
+				return  '<div class="cart-thumb-wrap">' +
+                            '<div class="cart-thumb"><img src="' + record.get('url') + '" title="' + record.get('appNo') + '"></div>' +
+				            '<span>' + record.get('appNo') + '</span>' +
+                        '</div>';
 			},
-			dataIndex:'url',
-			width:80,
-			text:'견본 이미지'
-		},
-		{
-			xtype:'gridcolumn',
-			dataIndex:'appNo',
-			flex:1,
-			align:'center',
-			text:'출원번호'
+			width:100,
+			text:'상표 이미지'
 		}
 	],
 

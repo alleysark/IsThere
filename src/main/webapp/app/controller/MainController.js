@@ -103,6 +103,9 @@ Ext.define('IsThere.controller.MainController', {
 
     init:function (application) {
         this.control({
+            'resultView':{
+                itemdblclick:this.onShowDetailInfo
+            },
             'resultList':{
                 itemdblclick:this.onShowDetailInfo
             },
@@ -127,6 +130,7 @@ Ext.define('IsThere.controller.MainController', {
             params:{
                 reqAppNo:detailAppNo
             },
+            waitMsg:'상세정보 검색중...',
             scope:this,
             callback:function (records) {
                 if (null == records) {

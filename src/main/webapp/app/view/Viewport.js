@@ -20,6 +20,7 @@ Ext.define('IsThere.view.Viewport', {
 				},
 				{
 					xtype:'cartPanel',
+                    id:'cart-list',
 					region:'west'
 				}
 			]

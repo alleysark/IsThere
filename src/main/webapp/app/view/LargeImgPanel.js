@@ -14,8 +14,7 @@ Ext.define('IsThere.view.LargeImgPanel', {
 				id:'largeImg',
 				region:'center',
                 width:256,
-                height:256,
-                src:'img/01.jpg'
+                height:256
 			}
 		];
 

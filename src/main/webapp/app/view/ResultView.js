@@ -13,38 +13,21 @@ Ext.define('IsThere.view.ResultView', {
     },
     store:'ResultStore',
 
+    autoScroll:true,
     tpl:[
         '<tpl for=".">',
-        '<div class="thumb-wrap" id="{appNo:stripTags}">',
-        '<div class="thumb"><img src="{url}" title="{appNo:htmlEncode}"></div>',
-        '<span class="app-no">{appNo:htmlEncode}</span>',
-        '</div>',
-        '</tpl>',
-        '<div class="x-clear"></div>'
+        '   <div class="thumb-wrap" id="{appNo:stripTags}">',
+        '       <div class="thumb"><img src="{url}" title="{appNo:htmlEncode}"></div>',
+        '       <span class="app-no">{appNo:htmlEncode}</span>',
+        '   </div>',
+        '</tpl>'
     ],
     multiSelect:true,
     height:310,
-    //trackOver:true,
-    //overItemCls:'x-item-over',
+    trackOver:true,
+    overItemCls:'x-item-over',
     itemSelector:'div.thumb-wrap',
     emptyText:'No images to display',
-    listeners:{
-        selectionchange:function (dv, nodes) {
-            console.log('sel changed');
-        }
-    },
-    /*
-     viewConfig:{
-     plugins:{
-     ptype:'gridviewdragdrop',
-     ddGroup:'result-ddgroup',
-
-     enableDrag:true,
-     enableDrop:false
-     },
-     copy:true
-     },
-     */
 
     initComponent:function () {
         var me = this;
@@ -58,5 +41,4 @@ Ext.define('IsThere.view.ResultView', {
         });
         me.callParent(arguments);
     }
-
 });

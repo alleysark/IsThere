@@ -20,6 +20,7 @@ Ext.define('IsThere.view.SearchPanel', {
                     //xtype:'toolbar',
                     xtype:'form',
                     dock:'top',
+                    border:false,
                     items:[
                         {
                             xtype:'toolbar',
@@ -77,8 +78,14 @@ Ext.define('IsThere.view.SearchPanel', {
             ],
             items:[
                 {
-                    //xtype:'resultList'
-                    xtype:'resultView'
+                    xtype:'panel',
+                    id:'results-view',
+                    items:[
+                        {
+                            //xtype:'resultList'
+                            xtype:'resultView'
+                        }
+                    ]
                 }
             ]
         });
