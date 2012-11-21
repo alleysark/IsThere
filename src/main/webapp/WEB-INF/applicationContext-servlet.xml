@@ -10,92 +10,99 @@
             http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-	<!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
+    <!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
 
-	<bean name="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-	      p:ignoreUnresolvablePlaceholders="true" p:ignoreResourceNotFound="true">
-		<property name="locations">
-			<list>
-				<value>/WEB-INF/config.properties</value>
-			</list>
-		</property>
-	</bean>
+    <bean name="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:ignoreUnresolvablePlaceholders="true" p:ignoreResourceNotFound="true">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/config.properties</value>
+            </list>
+        </property>
+    </bean>
 
-	<!-- ========================= DATASOURCE DEFINITION ========================= 
+    <!-- ========================= DATASOURCE DEFINITION =========================
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="${jdbc.url}"/>
-		<property name="user" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
-		<property name="initialPoolSize" value="${jdbc.min.pool}"/>
-		<property name="maxPoolSize" value="${jdbc.max.pool}"/>
-		<property name="debugUnreturnedConnectionStackTraces" value="true"/>
-	</bean>
-	-->
+     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+         <property name="jdbcUrl" value="${jdbc.url}"/>
+         <property name="user" value="${jdbc.username}"/>
+         <property name="password" value="${jdbc.password}"/>
+         <property name="initialPoolSize" value="${jdbc.min.pool}"/>
+         <property name="maxPoolSize" value="${jdbc.max.pool}"/>
+         <property name="debugUnreturnedConnectionStackTraces" value="true"/>
+     </bean>
+     -->
 
-	<!-- ========================= COMPONENT SCAN DEFINITION ========================= -->
+    <!-- ========================= COMPONENT SCAN DEFINITION ========================= -->
 
-	<context:component-scan base-package="org.isthere"/>
+    <context:component-scan base-package="org.isthere">
+    </context:component-scan>
 
-	<!-- ========================= MVC DEFINITION ========================= -->
 
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven>
-	</mvc:annotation-driven>
+    <!-- ========================= MVC DEFINITION ========================= -->
 
-	<!-- Configures Handler Interceptors -->
-	<mvc:interceptors>
-		<!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
-	</mvc:interceptors>
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
 
-	<mvc:view-controller path="/" view-name="index"/>
+    <!-- Configures Handler Interceptors -->
+    <mvc:interceptors>
+        <!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
 
-	<!-- ========================= VIEW RESOLVER ========================= -->
+    <mvc:view-controller path="/rest/" view-name="index"/>
 
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-		<property name="prefix" value="/WEB-INF/jsp/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
+    <!-- ========================= VIEW RESOLVER ========================= -->
 
-	<!-- ========================= ADAPTER DEFINITION ========================= -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<util:list id="beanList">
-				<ref bean="stringHttpMessageConverter"/>
-				<ref bean="jsonConverter"/>
-				<bean class="org.springframework.http.converter.FormHttpMessageConverter">
-					<property name="charset">
-						<bean class="java.nio.charset.Charset" factory-method="forName">
-							<constructor-arg value="UTF-8"/>
-						</bean>
-					</property>
-				</bean>
-			</util:list>
-		</property>
-	</bean>
+    <!-- ========================= ADAPTER DEFINITION ========================= -->
 
-	<!-- ========================= MESSAGE CONVERTER DEFINITION ========================= -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <util:list id="beanList">
+                <ref bean="stringHttpMessageConverter"/>
+                <ref bean="jsonConverter"/>
+                <bean class="org.springframework.http.converter.FormHttpMessageConverter">
+                    <property name="charset">
+                        <bean class="java.nio.charset.Charset" factory-method="forName">
+                            <constructor-arg value="UTF-8"/>
+                        </bean>
+                    </property>
+                </bean>
+            </util:list>
+        </property>
+    </bean>
 
-	<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-		<property name="supportedMediaTypes" value="application/json"/>
-	</bean>
+    <!-- ========================= MESSAGE CONVERTER DEFINITION ========================= -->
 
-	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<util:list>
-				<bean class="org.springframework.http.MediaType">
-					<constructor-arg value="application"/>
-					<constructor-arg value="json"/>
-				</bean>
-				<bean class="org.springframework.http.MediaType">
-					<constructor-arg value="application"/>
-					<constructor-arg value="xml"/>
-				</bean>
-			</util:list>
-		</property>
-	</bean>
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes" value="application/json"/>
+    </bean>
+
+    <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <util:list>
+                <bean class="org.springframework.http.MediaType">
+                    <constructor-arg value="application"/>
+                    <constructor-arg value="json"/>
+                </bean>
+                <bean class="org.springframework.http.MediaType">
+                    <constructor-arg value="application"/>
+                    <constructor-arg value="xml"/>
+                </bean>
+            </util:list>
+        </property>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
 </beans>

@@ -126,11 +126,11 @@ Ext.define('IsThere.controller.MainController', {
 
         var detInfoStore = this.getDetailInfosStore();
         Ext.Ajax.timeout = 10000;   //10 sec
+
         detInfoStore.load({
             params:{
                 reqAppNo:detailAppNo
             },
-            waitMsg:'상세정보 검색중...',
             scope:this,
             callback:function (records) {
                 if (null == records) {
@@ -146,7 +146,7 @@ Ext.define('IsThere.controller.MainController', {
                     this.getDisposalTextfield().setValue('');
                     this.getJudgeTextfield().setValue('');
                     this.getRegStateTextfield().setValue('');
-                    alert('No detail data..');
+                    Ext.MessageBox.alert('실패', '조회에 실패했습니다.');
                 } else {
                     var reco = records[0];
                     this.getNameTextfield().setValue(reco.get('titleKr') + ' ' + reco.get('titleEn'));
@@ -193,15 +193,16 @@ Ext.define('IsThere.controller.MainController', {
         if (form.isValid()) {
             form.submit({
                 url:'/rest/upload.do',
-                waitMsg:'파일 업로드중입니다...',
+                waitMsg:'검색중입니다...',
                 headers:{'Accept':'application/json'},
                 isUpload:true,
                 params:{
                     file:path
                 },
-                timeout:100000,
+                timeout:999999999999,
                 success:function (form, action) {
                     Ext.MessageBox.alert('성공', '업로드를 완료했습니다.');
+                    this.getResultStoreStore().loadData(action.response);
                 },
                 failure:function (form, action) {
                     Ext.MessageBox.alert('실패', '파일을 업로드할 수 없습니다.');

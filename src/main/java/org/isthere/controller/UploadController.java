@@ -1,6 +1,7 @@
 package org.isthere.controller;
 
 import org.apache.commons.io.IOUtils;
+import org.isthere.searcher.SimillerImageSearcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,14 +15,9 @@ import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequ
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-/**
- * Description.
- *
- * @author Edward KIM
- * @since 1.0
- */
 @Controller
 @RequestMapping("rest")
 public class UploadController {
@@ -44,10 +40,16 @@ public class UploadController {
             String originalFilename = uploadedFile.getOriginalFilename();
 
             // TODO pass bytes array to image handler
-
+//            SimillerImageSearcher simillerImageSearcher = new SimillerImageSearcher();
+//
+//            List<Map<String,String>> resultList =
+//                simillerImageSearcher.searchSimillerImage(uploadedFile.getInputStream());
 
             System.out.println(originalFilename);
             params.put("success", Boolean.TRUE);
+//            params.put("total", resultList.size());
+//            params.put("images", resultList);
+
             return new ResponseEntity(params, HttpStatus.OK);
         } catch (Exception ex) {
             System.out.println("\t>> " + ex.getMessage());

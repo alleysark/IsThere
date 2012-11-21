@@ -30,7 +30,7 @@
 	</category>
 
 	<category name="org.springframework">
-		<priority value="INFO"/>
+		<priority value="DEBUG"/>
 	</category>
 
 	<category name="org.hibernate">

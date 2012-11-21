@@ -93,8 +93,8 @@ public class DocumentBuilderFactory {
         chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getAutoColorCorrelogramDocumentBuilder());
         chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getTamuraDocumentBuilder());
         chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getGaborDocumentBuilder());
-        chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getColorHistogramDocumentBuilder());
-        chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getJpegCoefficientHistogramDocumentBuilder());
+//        chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getColorHistogramDocumentBuilder());
+//        chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getJpegCoefficientHistogramDocumentBuilder());
 //        chainedDocumentBuilder.addBuilder(DocumentBuilderFactory.getS);
         return chainedDocumentBuilder;
     }

@@ -4,13 +4,37 @@ Ext.Loader.setConfig({
 
 Ext.application({
 
-	models:[ 'Result', 'SearchOption', 'DetailInfo' ],
+	models:[
+        'Result',
+        'SearchOption',
+        'DetailInfo'
+    ],
 
-	stores:[ 'ResultStore', 'SearchOptStore', 'DetailInfos', 'CartStore' ],
+	stores:[
+        'ResultStore',
+        'SearchOptStore',
+        'DetailInfos',
+        'CartStore'
+    ],
 
-	views:[ 'AppPanel', 'mainPanel', 'CartPanel', 'SearchPane', 'DetailPanel', 'ResultList', 'MyViewport', 'MyPanel5', 'LargeImgPanel', 'DetailInfoProperty', 'CartList' ],
+	views:[
+        'AppPanel',
+        'mainPanel',
+        'CartPanel',
+        'SearchPane',
+        'DetailPanel',
+        /*'ResultList'*/    //grid to view
+        'ResultView',
+        'MyViewport',
+        'MyPanel5',
+        'LargeImgPanel',
+        'DetailInfoProperty',
+        'CartList'
+    ],
 
-	controllers:[ 'MainController' ],
+	controllers:[
+        'MainController'
+    ],
 
 	autoCreateViewport:true,
 

@@ -64,7 +64,7 @@
 
 	<servlet-mapping>
 		<servlet-name>disaptcher</servlet-name>
-		<url-pattern>/rest</url-pattern>
+		<url-pattern>/rest/</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>disaptcher</servlet-name>
