@@ -3,7 +3,7 @@ Ext.define('IsThere.view.LargeImgPanel', {
 	alias:'widget.largeImgPanel',
 
 	layout:'anchor',
-	border:true,
+	border:false,
 
 	initComponent:function () {
 		var me = this;
@@ -11,10 +11,11 @@ Ext.define('IsThere.view.LargeImgPanel', {
 		me.items = [
 			{
 				xtype:'imagecomponent',
-				itemId:'largeImg',
+				id:'largeImg',
 				region:'center',
-				margin:'5 5 5 5',
-				src:'img/01.jpg'
+                width:256,
+                height:256,
+                src:'img/01.jpg'
 			}
 		];
 

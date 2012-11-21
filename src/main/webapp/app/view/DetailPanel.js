@@ -16,29 +16,36 @@ Ext.define('IsThere.view.DetailPanel', {
         var me = this;
         me.items = [
             {
-                layout:{
-                    type:'table',
-                    column:2
-                },
+                layout:'vbox',
+                align:'stretchmax',
+                pack:'start', //what this property means?
+
                 items:[
                     {
-                        xtype:'largeImgPanel',
-                        region:'west',
-                        width:256,
-                        height:256
+                        xtype:'panel',
+                        layout:'hbox',
+                        align:'stretch',
+
+                        items:[
+                            {
+                                xtype:'largeImgPanel',
+                                width:266,
+                                height:266,
+                                padding:'5'
+                            },
+                            {
+                                xtype:'detailInfoProperty',
+                                flex:1,
+                                margin:'30 0 0 10'
+                            }
+                        ]
                     },
                     {
-                        xtype:'detailInfoProperty',
-                        region:'center',
-                        width:800,
-                        padding:'0 0 0 10'
+                        xtype:'moreDetail',
+                        region:'south',
+                        flax:1
                     }
                 ]
-            },
-            {
-                xtype:'moreDetail',
-                region:'south',
-                flax:1
             }
         ];
         me.callParent(arguments);

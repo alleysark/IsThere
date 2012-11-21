@@ -6,7 +6,7 @@ Ext.define('IsThere.controller.MainController', {
 
     stores:[ 'ResultStore', 'CartStore', 'DetailInfos' ],
 
-    views:[ 'SearchPanel', 'CartPanel', 'DetailInfoProperty'],
+    views:[ 'SearchPanel', 'CartPanel', 'DetailInfoProperty', 'LargeImgPanel'],
 
     refs:[
         //searchPanel Toolbar items
@@ -31,6 +31,11 @@ Ext.define('IsThere.controller.MainController', {
             selector:'cartList'
         },
 
+        //detail info large image
+        {
+            ref:'largeImg',
+            selector:'largeImgPanel #largeImg'
+        },
         //detailInfoProperty
         {
             ref:'nameTextfield',
@@ -147,6 +152,9 @@ Ext.define('IsThere.controller.MainController', {
                     this.getDisposalTextfield().setValue(reco.get('disposal'));
                     this.getJudgeTextfield().setValue(reco.get('judge'));
                     this.getRegStateTextfield().setValue(reco.get('regState'));
+
+                    //set image
+                    this.getLargeImg().setSrc(record.get('url'));
                 }
             }
         });

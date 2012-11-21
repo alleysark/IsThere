@@ -25,7 +25,7 @@ Ext.define('IsThere.view.mainPanel', {
 				{
 					xtype:'detailPanel',
 					region:'south',
-					height:450,
+					height:295,
 					collapsible:true,
 					split:true,
 					collapsed:false
